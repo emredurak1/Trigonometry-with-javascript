@@ -38,7 +38,7 @@ const average = function (p1, p2) {
 const distance = (p1, p2) => Math.hypot(p1.x - p2.x, p1.y - p2.y);
 
 const update = function () {
-  const sin = Math.sin(theta);
+  const sin = -Math.sin(theta);
   const cos = Math.cos(theta);
   const tan = Math.tan(theta); // sin/cos
   const cot = 1 / tan; // cos / sin
@@ -126,7 +126,7 @@ const update = function () {
   drawPoint(
     {
       x: theta * chartScaler,
-      y: sin * chartScaler,
+      y: -sin * chartScaler,
     },
     2,
     "red"
