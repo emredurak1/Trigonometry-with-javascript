@@ -140,9 +140,9 @@ const update = function () {
   );
 
   drawText(
-    `ϴ = ${-1 * +theta.toFixed(2)}rad (${
-      -1 * Math.round(toDeg(theta)).toString().padStart(2, " ")
-    }°)`,
+    `ϴ = ${+theta.toFixed(2)}rad (${Math.round(toDeg(theta))
+      .toString()
+      .padStart(2, " ")}°)`,
     {
       x: offset.x / 2,
       y: offset.y * 0.7,
@@ -254,7 +254,7 @@ const drawText = function (text, loc, color = "black") {
 const drawPoint = function (loc, size = 20, color = "black") {
   chartCtx.beginPath();
   chartCtx.fillStyle = color;
-  if ((color = "blue")) chartCtx.arc(loc.x, -loc.y, size / 2, 0, Math.PI * 2);
+  if (color === "blue") chartCtx.arc(loc.x, -loc.y, size / 2, 0, Math.PI * 2);
   else chartCtx.arc(loc.x, loc.y, size / 2, 0, Math.PI * 2);
   chartCtx.fill();
 };
