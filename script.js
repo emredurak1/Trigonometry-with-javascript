@@ -38,7 +38,7 @@ const average = function (p1, p2) {
 const distance = (p1, p2) => Math.hypot(p1.x - p2.x, p1.y - p2.y);
 
 const update = function () {
-  const sin = -Math.sin(theta);
+  const sin = Math.sin(theta);
   const cos = Math.cos(theta);
   const tan = Math.tan(theta); // sin/cos
   const cot = 1 / tan; // cos / sin
@@ -58,7 +58,7 @@ const update = function () {
   drawCoordinateSystem(ctx, offset);
 
   drawText(
-    `sin = opposite / hypotenuse = ${+sin.toFixed(2)}`,
+    `sin = opposite / hypotenuse = ${-1 * +sin.toFixed(2)}`,
     {
       x: -offset.x / 2,
       y: offset.y * 0.6,
@@ -76,7 +76,7 @@ const update = function () {
   );
 
   drawText(
-    `tan = opposite / adjacent = ${+tan.toFixed(2)}`,
+    `tan = opposite / adjacent = ${tan < 3000 && tan > -3000 ? +tan.toFixed(2) : 'undefined'}`,
     {
       x: -offset.x / 2,
       y: offset.y * 0.8,
@@ -85,7 +85,7 @@ const update = function () {
   );
 
   drawText(
-    `cot = adjacent / opposite = ${+cot.toFixed(2)}`,
+    `cot = adjacent / opposite = ${cot < 3000 && cot > -3000 ? +cot.toFixed(2) : 'undefined'}`,
     {
       x: -offset.x / 2,
       y: offset.y * 0.9,
@@ -126,7 +126,7 @@ const update = function () {
   drawPoint(
     {
       x: theta * chartScaler,
-      y: -sin * chartScaler,
+      y: sin * chartScaler,
     },
     2,
     "red"
