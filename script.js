@@ -140,7 +140,7 @@ const update = function () {
   );
 
   drawText(
-    `ϴ = ${+theta.toFixed(2)}rad (${Math.round(toDeg(theta))
+    `ϴ = ${-1 * +theta.toFixed(2)}rad (${-1 * Math.round(toDeg(theta))
       .toString()
       .padStart(2, " ")}°)`,
     {
