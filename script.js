@@ -1,5 +1,6 @@
 "use strict";
 
+const button = document.querySelector("button");
 const canvas = document.getElementById("myCanvas");
 const chartCanvas = document.getElementById("chartCanvas");
 const ctx = canvas.getContext("2d");
@@ -17,6 +18,13 @@ const chartOffset = {
 
 let theta = Math.PI / 4;
 const c = 100;
+let show = false;
+
+button.addEventListener("click", function () {
+  show = !show;
+  if (show) button.textContent = "Hide Sec & Cosec on Chart";
+  else button.textContent = "Show Sec & Cosec on Chart";
+});
 
 const A = { x: 0, y: 0 };
 const B = {
@@ -42,6 +50,8 @@ const update = function () {
   const cos = Math.cos(theta);
   const tan = Math.tan(theta); // sin/cos
   const cot = 1 / tan; // cos / sin
+  const sec = 1 / cos;
+  const csc = 1 / sin;
 
   const T = {
     x: Math.sign(cos) * Math.hypot(1, tan) * c,
@@ -53,6 +63,16 @@ const update = function () {
     y: Math.sign(sin) * Math.hypot(cot, 1) * c,
   };
 
+  const S = {
+    x: Math.sign(cos) * Math.hypot(0, sec) * c,
+    y: 0,
+  };
+
+  const E = {
+    x: 0,
+    y: Math.sign(sin) * Math.hypot(0, csc) * c,
+  };
+
   ctx.clearRect(-offset.x, -offset.y, canvas.width, canvas.height);
 
   drawCoordinateSystem(ctx, offset);
@@ -61,7 +81,7 @@ const update = function () {
     `sin = opposite / hypotenuse = ${-1 * +sin.toFixed(2)}`,
     {
       x: -offset.x / 2,
-      y: offset.y * 0.6,
+      y: offset.y * 0.4,
     },
     "red"
   );
@@ -70,27 +90,53 @@ const update = function () {
     `cos = adjacent / hypotenuse = ${+cos.toFixed(2)}`,
     {
       x: -offset.x / 2,
-      y: offset.y * 0.7,
+      y: offset.y * 0.5,
     },
     "blue"
   );
 
   drawText(
-    `tan = opposite / adjacent = ${tan < 3000 && tan > -3000 ? +tan.toFixed(2) : 'undefined'}`,
+    `tan = opposite / adjacent = ${
+      tan < 3000 && tan > -3000 ? +tan.toFixed(2) : "undefined"
+    }`,
     {
       x: -offset.x / 2,
-      y: offset.y * 0.8,
+      y: offset.y * 0.6,
     },
     "magenta"
   );
 
   drawText(
-    `cot = adjacent / opposite = ${cot < 3000 && cot > -3000 ? +cot.toFixed(2) : 'undefined'}`,
+    `cot = adjacent / opposite = ${
+      cot < 3000 && cot > -3000 ? +cot.toFixed(2) : "undefined"
+    }`,
+    {
+      x: -offset.x / 2,
+      y: offset.y * 0.7,
+    },
+    "green"
+  );
+
+  drawText(
+    `sec = hypotenuse / adjacent = ${
+      sec < 3000 && sec > -3000 ? +sec.toFixed(2) : "undefined"
+    }`,
+    {
+      x: -offset.x / 2,
+      y: offset.y * 0.8,
+    },
+    "orange"
+  );
+
+  drawText(
+    `cosec / csc = hypotenuse / opposite = ${
+      csc < 3000 && csc > -3000 ? +csc.toFixed(2) : "undefined"
+    }`,
     {
       x: -offset.x / 2,
       y: offset.y * 0.9,
     },
-    "green"
+    "turquoise"
   );
 
   drawText(
@@ -105,8 +151,12 @@ const update = function () {
 
   drawLine(A, B);
   drawText("1", average(A, B));
+  drawLine(A, S, "orange");
+  drawText("secϴ", average(A, S), "orange");
+  drawLine(A, E, "turquoise");
+  drawText("cscϴ", average(A, E), "turquoise");
   drawLine(A, C, "blue");
-  drawText("cosϴ", average(A, C), "blue");
+  drawText("cosϴ", { x: average(A, C).x, y: average(A, C).y + 20 }, "blue");
   drawLine(B, C, "red");
   drawText("sinϴ", average(B, C), "red");
   drawLine(B, T, "magenta");
@@ -155,6 +205,24 @@ const update = function () {
     2,
     "green"
   );
+  if (show) {
+    drawPoint(
+      {
+        x: theta * chartScaler,
+        y: sec * chartScaler,
+      },
+      2,
+      "orange"
+    );
+    drawPoint(
+      {
+        x: theta * chartScaler,
+        y: csc * chartScaler,
+      },
+      2,
+      "turquoise"
+    );
+  }
 };
 
 const toDeg = (rad) => (rad * 180) / Math.PI;
