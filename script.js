@@ -119,7 +119,7 @@ const update = function () {
 
   drawText(
     `sec = hypotenuse / adjacent = ${
-      sec < 3000 && sec > -3000 ? -1 * +sec.toFixed(2) : "undefined"
+      sec < 3000 && sec > -3000 ? +sec.toFixed(2) : "undefined"
     }`,
     {
       x: -offset.x / 2,
