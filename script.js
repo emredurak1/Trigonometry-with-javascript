@@ -16,7 +16,7 @@ const chartOffset = {
   y: chartCanvas.height / 2,
 };
 
-let theta = 0 ;
+let theta = 0;
 const c = 100;
 let show = false;
 
@@ -254,7 +254,8 @@ const drawText = function (text, loc, color = "black") {
 const drawPoint = function (loc, size = 20, color = "black") {
   chartCtx.beginPath();
   chartCtx.fillStyle = color;
-  if (color === "blue" || color === 'turquoise' || color === 'orange') chartCtx.arc(-loc.x, -loc.y, size / 2, 0, Math.PI * 2);
+  if (color === "blue" || color === "orange")
+    chartCtx.arc(-loc.x, -loc.y, size / 2, 0, Math.PI * 2);
   else chartCtx.arc(-loc.x, loc.y, size / 2, 0, Math.PI * 2);
   chartCtx.fill();
 };
