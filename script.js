@@ -16,7 +16,7 @@ const chartOffset = {
   y: chartCanvas.height / 2,
 };
 
-let theta = Math.PI / 4;
+let theta = 0 ;
 const c = 100;
 let show = false;
 
