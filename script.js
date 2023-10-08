@@ -254,7 +254,7 @@ const drawText = function (text, loc, color = "black") {
 const drawPoint = function (loc, size = 20, color = "black") {
   chartCtx.beginPath();
   chartCtx.fillStyle = color;
-  if (color === "blue") chartCtx.arc(-loc.x, -loc.y, size / 2, 0, Math.PI * 2);
+  if (color === "blue" || color === 'turquoise' || color === 'orange') chartCtx.arc(-loc.x, -loc.y, size / 2, 0, Math.PI * 2);
   else chartCtx.arc(-loc.x, loc.y, size / 2, 0, Math.PI * 2);
   chartCtx.fill();
 };
