@@ -97,7 +97,7 @@ const update = function () {
 
   drawText(
     `tan = opposite / adjacent = ${
-      tan < 3000 && tan > -3000 ? +tan.toFixed(2) : "undefined"
+      tan < 3000 && tan > -3000 ? -1 * +tan.toFixed(2) : "undefined"
     }`,
     {
       x: -offset.x / 2,
@@ -108,7 +108,7 @@ const update = function () {
 
   drawText(
     `cot = adjacent / opposite = ${
-      cot < 3000 && cot > -3000 ? +cot.toFixed(2) : "undefined"
+      cot < 3000 && cot > -3000 ? -1 * +cot.toFixed(2) : "undefined"
     }`,
     {
       x: -offset.x / 2,
@@ -119,7 +119,7 @@ const update = function () {
 
   drawText(
     `sec = hypotenuse / adjacent = ${
-      sec < 3000 && sec > -3000 ? +sec.toFixed(2) : "undefined"
+      sec < 3000 && sec > -3000 ? -1 * +sec.toFixed(2) : "undefined"
     }`,
     {
       x: -offset.x / 2,
@@ -140,7 +140,7 @@ const update = function () {
   );
 
   drawText(
-    `ϴ = ${+theta.toFixed(2)}rad (${Math.round(toDeg(theta))
+    `ϴ = ${-1 * +theta.toFixed(2)}rad (${-1 * Math.round(toDeg(theta))
       .toString()
       .padStart(2, " ")}°)`,
     {
@@ -254,8 +254,8 @@ const drawText = function (text, loc, color = "black") {
 const drawPoint = function (loc, size = 20, color = "black") {
   chartCtx.beginPath();
   chartCtx.fillStyle = color;
-  if (color === "blue") chartCtx.arc(loc.x, -loc.y, size / 2, 0, Math.PI * 2);
-  else chartCtx.arc(loc.x, loc.y, size / 2, 0, Math.PI * 2);
+  if (color === "blue") chartCtx.arc(-loc.x, -loc.y, size / 2, 0, Math.PI * 2);
+  else chartCtx.arc(-loc.x, loc.y, size / 2, 0, Math.PI * 2);
   chartCtx.fill();
 };
 
