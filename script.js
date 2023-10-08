@@ -140,9 +140,9 @@ const update = function () {
   );
 
   drawText(
-    `ϴ = ${-1 * +theta.toFixed(2)}rad (${-1 * Math.round(toDeg(theta))
-      .toString()
-      .padStart(2, " ")}°)`,
+    `ϴ = ${-1 * +theta.toFixed(2)}rad (${
+      -1 * Math.round(toDeg(theta)).toString().padStart(2, " ")
+    }°)`,
     {
       x: offset.x / 2,
       y: offset.y * 0.7,
@@ -283,3 +283,8 @@ const drawCoordinateSystem = function (ctx, offset) {
 
 drawCoordinateSystem(ctx, offset);
 drawCoordinateSystem(chartCtx, chartOffset);
+drawText(
+  "Scroll To Start",
+  { x: document.body.style.width / 2, y: -offset.y * 0.001 },
+  "black"
+);
