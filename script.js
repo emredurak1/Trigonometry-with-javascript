@@ -130,7 +130,7 @@ const update = function () {
 
   drawText(
     `cosec / csc = hypotenuse / opposite = ${
-      csc < 3000 && csc > -3000 ? +csc.toFixed(2) : "undefined"
+      csc < 3000 && csc > -3000 ? -1 * +csc.toFixed(2) : "undefined"
     }`,
     {
       x: -offset.x / 2,
